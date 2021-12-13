@@ -1,47 +1,64 @@
 //Model
 const model = {
-    currentCar: null,
-    cars: [
+    currentCoffee: null,
+    coffees: [
         {
             clickCount: 0,
-            name: 'Cafe Ailen : 60k',
+            name: 'Cafe Ailen',
             imgSrc: 'img/anhcafe.jpg',
-        },
-        {
-            clickCount: 0,
-            name: 'Cafe Đen : 70k',
-            imgSrc: 'img/cafecohoa.jpg',
-        },
-        {
-            clickCount: 0,
-            name: 'Cafe Đặc Biệt : 80k',
-            imgSrc: 'img/cafecoitbanh.jpg',
-        },
-        {
-            clickCount: 0,
-            name: 'Cafe Americano : 90k',
-            imgSrc: 'img/cafecokhoi.jpg',
+            price: 45,
+            code: 1,
 
         },
         {
             clickCount: 0,
-            name: 'Cafe Trứng : 50k ',
+            name: 'Cafe Đen ',
+            imgSrc: 'img/cafecohoa.jpg',
+            price: 50,
+            code: 2,
+        },
+        {
+            clickCount: 0,
+            name: 'Cafe Đặc Biệt ',
+            imgSrc: 'img/cafecoitbanh.jpg',
+            price: 60,
+            code: 3,
+        },
+        {
+            clickCount: 0,
+            name: 'Cafe Americano ',
+            imgSrc: 'img/cafecokhoi.jpg',
+            price: 70,
+            code: 4,
+
+        },
+        {
+            clickCount: 0,
+            name: 'Cafe Trứng ',
             imgSrc: 'img/cafetrung.png',
+            price: 80,
+            code: 5,
         },
         {
             clickCount: 0,
-            name: 'Cafe Chất : 45k',
+            name: 'Cafe Chất',
             imgSrc: 'img/cafesocola.jpg',
+            price: 85,
+            code: 6,
         },
         {
             clickCount: 0,
-            name: 'Cafe Sữa : 75k',
+            name: 'Cafe Sữa ',
             imgSrc: 'img/cafesua.jpg',
+            price: 99,
+            code: 7,
         },
         {
             clickCount: 0,
-            name: 'Cafe Nhỏ Giọt : 99k',
+            name: 'Cafe Nhỏ Giọt ',
             imgSrc: 'img/loccaffe.jpg',
+            price: 99.99,
+            code: 8,
         },
     ],
 };
@@ -50,41 +67,44 @@ const model = {
 const controller = {
     init() {
 
-        model.currentCar = model.cars[0];
-        carListView.init();
-        carView.init();
+        model.currentCoffee = model.coffees[0];
+        coffeeListView.init();
+        coffeeView.init();
     },
 
-    getCurrentCar() {
-        return model.currentCar;
+    getCurrentCoffee() {
+        return model.currentCoffee;
     },
 
-    getCars() {
-        return model.cars;
+    getcoffees() {
+        return model.coffees;
     },
-    setCurrentCar(car) {
-        model.currentCar = car;
+    setCurrentCoffee(coffee) {
+        model.currentCoffee = coffee;
     },
     incrementCounter() {
-        model.currentCar.clickCount++;
-        carView.render();
+        model.currentCoffee.clickCount++;
+        coffeeView.render();
     },
 };
 
 // Views
-const carView = {
+const coffeeView = {
     init() {
 
-        this.carElem = document.getElementById('car');
-        this.carNameElem = document.getElementById('car-name');
-        this.carImageElem = document.getElementById('car-img');
-        this.countElem = document.getElementById('car-count');
+        this.coffeeElem = document.getElementById('coffee');
+        this.coffeeNameElem = document.getElementById('coffee-name');
+        this.coffeePriceElem = document.getElementById('coffee-price');
+        this.coffeeCodeElem = document.getElementById('coffee-code');
+        this.coffeeImageElem = document.getElementById('coffee-img');
+        this.countElem = document.getElementById('coffee-count');
 
 
-        this.carImageElem.addEventListener('click', this.clickHandler);
+        this.coffeeImageElem.addEventListener('click', this.clickHandler);
 
 
         this.render();
+
     },
 
     clickHandler() {
@@ -93,44 +113,46 @@ const carView = {
 
     render() {
 
-        const currentCar = controller.getCurrentCar();
-        this.countElem.textContent = currentCar.clickCount;
-        this.carNameElem.textContent = currentCar.name;
-        this.carImageElem.src = currentCar.imgSrc;
-        this.carImageElem.style.cursor = 'pointer';
+        const currentCoffee = controller.getCurrentCoffee();
+        this.countElem.textContent = currentCoffee.clickCount;
+        this.coffeeNameElem.textContent = currentCoffee.name;
+        this.coffeePriceElem.textContent = 'price: ' + currentCoffee.price;
+        this.coffeeCodeElem.textContent = 'code: ' + currentCoffee.code;
+        this.coffeeImageElem.src = currentCoffee.imgSrc;
+        this.coffeeImageElem.style.cursor = 'pointer';
     },
 };
 
-const carListView = {
+const coffeeListView = {
     init() {
-        this.carListElem = document.getElementById('car-list');
+        this.coffeeListElem = document.getElementById('coffee-list');
         this.render();
     },
 
     render() {
-        let car;
+        let coffee;
         let elem;
         let i;
-        const cars = controller.getCars();
+        const coffees = controller.getcoffees();
 
 
-        this.carListElem.innerHTML = '';
-        for(let i = 0; i < cars.length; i++) {
-            car = cars[i];
+        this.coffeeListElem.innerHTML = '';
+        for(let i = 0; i < coffees.length; i++) {
+            coffee = coffees[i];
             elem = document.createElement('li');
             elem.className = 'list-group-item d-flex justify-content-between lh-condensed';
             elem.style.cursor = 'pointer';
-            elem.textContent = car.name;
+            elem.textContent = coffee.name;
             elem.addEventListener(
                 'click',
-                (function(carCopy) {
+                (function(coffeeCopy) {
                     return function() {
-                        controller.setCurrentCar(carCopy);
-                        carView.render();
+                        controller.setCurrentCoffee(coffeeCopy);
+                        coffeeView.render();
                     };
-                })(car)
+                })(coffee)
             );
-            this.carListElem.appendChild(elem);
+            this.coffeeListElem.appendChild(elem);
         }
     },
 };

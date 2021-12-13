@@ -1,6 +1,38 @@
 body {
-    background-image: url("../img/anhquancafe.jpg");
+    background-image: url("../img/hinhnen.png");
     background-size: 100%;
     width: 100%;
     height: 100vh;
+}
+.headermenu {
+    line-height: 72px;
+    color: aliceblue;
+    margin-left: 26px;
+}
+#coffee-name{
+    font-size: 30px;
+}
+#menu{
+    margin-left: 131px;
+}
+.linhdeptrai{
+    font-size: 30px;
+    margin-top: 12px;
+    font-weight: bold ;
+    margin-right: 277px;
+    color: aliceblue;
+}
+.linhquadeptrai{
+    margin-top: 13px;
+}
+.form{
+
+}
+#chinh{
+margin-top: 55px;
+    color: aliceblue;
+}
+#coffee-code{
+    color: aliceblue;
+    margin-left: 26px;
 }

@@ -13,40 +13,140 @@
     <link rel="stylesheet" href="js/angular.min.js">
     <title>Cửa Hàng Đồ Uống </title>
 </head>
-<body>
-<div class="container">
-    <div class="py-5 text-center">
-        <h2 class="display-4">Danh Sách Đồ Uống </h2>
-    </div>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div class="container-fluid
+">
+
     <div class="row">
-        <div class="col-md-4 order-md-1 mb-4">
-            <h4 style="font-weight: bold;">Menu</h4>
-            <ul id="car-list" class="list-group mb-3"></ul>
+        <div class="col-md-3  mb-4 offset-md-1
+">
+            <h4 class="headermenu" id="menu" style="font-weight: bold;">Menu</h4>
+            <ul id="coffee-list" class="list-group mb-3"></ul>
+
         </div>
-        <div class="col-md-8 order-md-2">
-            <div id="car">
+
+        <div class="col-md-4  ">
+            <div id="coffee">
                 <div class="row">
-                    <h2
-                            class="text-center display-4 font-weight-bold col"
-                            id="car-name"
-                    ></h2>
-                    <div class="text-center display-4 col">
-                        <p>
-                            quantily
-                            <span id="car-count"></span>
-                        </p>
+                    <h5
+
+                            class="text-center display-4 font-weight-bold col headermenu"
+                            id="coffee-name"
+
+                    ></h5>
+
+                    <div class="linhquadeptrai">
+
                     </div>
                 </div>
                 <img
-                        style="width: 70%; margin: auto;"
-                        id="car-img"
+                        style="width: 100%;
+                        margin: auto;"
+                        id="coffee-img"
                         src=""
-                        alt="muscle car"
+                        alt="muscle coffee"
                 />
+                <h3 class="headermenu" id="coffee-price">
+
+                </h3>
+                <h4 id="coffee-code">
+                    Code
+                </h4>
+                <div class="text-center display-4 col">
+                    <p class="linhdeptrai">
+                        quantily
+                        <span id="coffee-count"></span>
+                    </p>
+                </div>
             </div>
+
         </div>
+        <div id="chinh" class="col-md-3 ">
+
+                <form action="#" id="coffee-form">
+                    <span>Nhập mã cà phê: </span><br>
+                    <input type="text" ng-model="code"><br>
+                    <span>Nhập số lượng bạn muốn mua</span><br>
+                    <input type="number" ng-model="qty" id="qty"><br>
+                    <span>Nhập kích thước cà phê</span><br>
+                    <input type="text" ng-model="size" id="size" placeholder="(Pay more 2$ for size L)"><br>
+                    <input type="button" id="calculate" value="calculate" ng-click="Calc()">
+                    <h4>Total: {{total | currency: '$ '}}</h4><br>
+                    <span>Tên khách hàng</span>
+                    <input type="text" name="customer-name"><br>
+                    <span>Số điện thoại</span>
+                    <input type="number" name="phone"><br>
+                    <span>Địa chỉ giao hàng</span>
+                    <input type="text">
+                    <input type="button" value="submit" ng-click="Calc()">
+                </form>
+            </div>
+
+        </div>
+
     </div>
+
 </div>
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function ($scope) {
+        $scope.total = '';
+        $scope.code = '';
+        $scope.qty = 0;
+        $scope.size = '';
+        $scope.Calc = function () {
+            if ($scope.size === 'M' || $scope.size === 'm'){
+                switch ($scope.code) {
+                    case 'Cap' :
+                        $scope.total = $scope.qty * 20;
+                        break;
+                    case 'Mac' :
+                        $scope.total = $scope.qty * 15;
+                        break;
+                    case 'Lat' :
+                        $scope.total = $scope.qty * 10;
+                        break;
+                    case 'Den' :
+                        $scope.total = $scope.qty * 5;
+                        break;
+                    case 'Nau' :
+                        $scope.total = $scope.qty * 7;
+                        break;
+                }
+                return $scope.total;
+
+            } else if ($scope.size === 'L' || $scope.size === 'l') {
+                switch ($scope.code) {
+                    case '1' :
+                        $scope.total = $scope.qty * 22;
+                        break;
+                    case '2' :
+                        $scope.total = $scope.qty * 17;
+                        break;
+                    case '3' :
+                        $scope.total = $scope.qty * 12;
+                        break;
+                    case '4' :
+                        $scope.total = $scope.qty * 7;
+                        break;
+                    case '5' :
+                        $scope.total = $scope.qty * 9;
+                        break;
+                    case '6' :
+                        $scope.total = $scope.qty * 9;
+                        break;
+                    case '7' :
+                        $scope.total = $scope.qty * 9;
+                        break;
+                    case '8' :
+                        $scope.total = $scope.qty * 9;
+                        break;
+                }
+                return $scope.total;
+            }
+        };
+    });
+</script>
 <!-- Compiled and minified JavaScript -->
 <script
         src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
